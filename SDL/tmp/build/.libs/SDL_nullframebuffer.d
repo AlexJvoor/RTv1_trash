@@ -1,0 +1,31 @@
+build/SDL_nullframebuffer.lo: \
+  /Users/hchau/tests/SDL/src/video/dummy/SDL_nullframebuffer.c \
+  /Users/hchau/tests/SDL/src/video/dummy/../../SDL_internal.h \
+  /Users/hchau/tests/SDL/src/video/dummy/../../dynapi/SDL_dynapi.h \
+  /Users/hchau/tests/SDL/src/video/dummy/../../dynapi/SDL_dynapi_overrides.h \
+  include/SDL_config.h /Users/hchau/tests/SDL/include/SDL_platform.h \
+  /Users/hchau/tests/SDL/include/begin_code.h \
+  /Users/hchau/tests/SDL/include/close_code.h \
+  /Users/hchau/tests/SDL/src/video/dummy/../SDL_sysvideo.h \
+  /Users/hchau/tests/SDL/include/SDL_messagebox.h \
+  /Users/hchau/tests/SDL/include/SDL_stdinc.h \
+  /Users/hchau/tests/SDL/include/SDL_config.h \
+  /Users/hchau/tests/SDL/include/SDL_video.h \
+  /Users/hchau/tests/SDL/include/SDL_pixels.h \
+  /Users/hchau/tests/SDL/include/SDL_endian.h \
+  /Users/hchau/tests/SDL/include/SDL_rect.h \
+  /Users/hchau/tests/SDL/include/SDL_error.h \
+  /Users/hchau/tests/SDL/include/SDL_rwops.h \
+  /Users/hchau/tests/SDL/include/SDL_surface.h \
+  /Users/hchau/tests/SDL/include/SDL_blendmode.h \
+  /Users/hchau/tests/SDL/include/SDL_shape.h \
+  /Users/hchau/tests/SDL/include/SDL_thread.h \
+  /Users/hchau/tests/SDL/include/SDL_atomic.h \
+  /Users/hchau/tests/SDL/include/SDL_mutex.h \
+  /Users/hchau/tests/SDL/src/video/dummy/../SDL_vulkan_internal.h \
+  /Users/hchau/tests/SDL/src/video/dummy/.././khronos/vulkan/vulkan.h \
+  /Users/hchau/tests/SDL/src/video/dummy/.././khronos/vulkan/vk_platform.h \
+  /Users/hchau/tests/SDL/src/video/dummy/.././khronos/vulkan/vulkan_core.h \
+  /Users/hchau/tests/SDL/src/video/dummy/.././khronos/vulkan/vulkan_macos.h \
+  /Users/hchau/tests/SDL/include/SDL_vulkan.h \
+  /Users/hchau/tests/SDL/src/video/dummy/SDL_nullframebuffer_c.h

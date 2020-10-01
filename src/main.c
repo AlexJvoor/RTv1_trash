@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 double ft_map_inline(double x, double in_start, double in_end, double out_start, double out_end)
 {
@@ -37,5 +37,6 @@ int main()
 
     printf("%lf\n", x);
 
+	test_entry_point();
     return (0);
 }
