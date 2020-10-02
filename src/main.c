@@ -6,11 +6,10 @@
 /*   By: jvoor <jvoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 23:33:37 by jvoor             #+#    #+#             */
-/*   Updated: 2020/10/02 13:13:57 by jvoor            ###   ########.fr       */
+/*   Updated: 2020/10/02 17:56:11 by jvoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "rtv1.h"
 
 // double ft_map_inline(double x, double in_start, double in_end, double out_start, double out_end)
@@ -31,11 +30,36 @@
 // }
 
 
-int main()
-{
-    double x = ft_map_inline(-7, 10, 1, 20, -20);
+// void		file_read()
+// {
+	
+// }
 
-    printf("%lf\n", x);
+void esc_exit(int kw)
+{
+	if (kw == 53)
+	{
+		exit(0);
+	}
+}
+
+int			main()
+{
+	int			bpp;
+	int			sl;
+	int			endn;
+
+    void *mlx = mlx_init();
+	void *win = mlx_new_window(mlx, 1000, 1000, "RTv1");
+	void *img = mlx_new_image(mlx, 1000, 1000);
+	int *data = (int *)mlx_get_data_addr(img, &bpp, &sl, &endn);
+
+	mlx_key_hook(win, esc_exit, NULL);
+	mlx_loop(mlx);
+        
+    // double x = ft_map_inline(-7, 10, 1, 20, -20);
+
+    // printf("%lf\n", x);
 
     return (0);
 }
