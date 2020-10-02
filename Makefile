@@ -32,11 +32,11 @@ $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADERS)
 
 clean:
 	@/bin/rm -rf $(DIR_O)
-	@make clean --directory ./libft
+	@make fclean -C ./libft
+	@make fclean -C ./libnum
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make fclean --directory ./libft
 
 re: fclean all
 
