@@ -63,10 +63,12 @@ int				main()
 	t_mlx		mlx = init_mlx();
 	t_cam 		cam = init_cam();
 	
-	while (i++ < 1000000)
-	{
-		mlx.data[i] = 0xFFFF00;
-	}
+// 	while (i++ < 1000000)
+// 	{
+// 		mlx.data[i] = 0xFFFF00;
+// 	}
+
+	parse("maps/1", data);
 	// draw_plane(plane, mlx.img);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	mlx_key_hook(mlx.win, esc_exit, NULL);
