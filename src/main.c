@@ -54,9 +54,10 @@ int			main()
 	void *img = mlx_new_image(mlx, 1000, 1000);
 	int *data = (int *)mlx_get_data_addr(img, &bpp, &sl, &endn);
 
+	parse("maps/1", data);
 	mlx_key_hook(win, esc_exit, NULL);
 	mlx_loop(mlx);
-        
+
     // double x = ft_map_inline(-7, 10, 1, 20, -20);
 
     // printf("%lf\n", x);

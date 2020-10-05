@@ -4,13 +4,15 @@
 #include "math.h"
 #include "mlx.h"
 #include "libnum.h"
+#include "libft.h"
 
 typedef enum	e_type
 {
 	SPHERE,
 	PLANE,
 	CONE,
-	CYLINDER
+	CYLINDER,
+	LIGHT
 }				t_type;
 
 typedef struct  s_plane
@@ -25,7 +27,7 @@ typedef struct  s_sphere
 	int8_t		type;
 	t_vec3      coords;//центр
 	float       rad;
-}				t_spere;
+}				t_sphere;
 
 typedef struct  s_cone
 {
@@ -63,7 +65,7 @@ typedef struct	s_limcylinder
 
 typedef struct	s_light
 {
-	// int8_t		type;
+	 int8_t		type;
 	t_vec3		coord;
 	float		light_pov;
 	// t_light		*next;
@@ -74,17 +76,17 @@ typedef struct	s_obj
 {
 	int8_t		type;
 }				t_obj;
-
-typedef struct	s_objs
-{
-	t_plane			*planes;
-	t_spere			*speres;
-	t_cone			*cones;
-	t_limcone		*lcones;
-	t_cylinder		*cylinders;
-	t_limcylinder	*lcylinders;
-	t_light			*lights;
-}				t_objs;
+//
+//typedef struct	s_objs
+//{
+//	t_plane			*planes;
+//	t_spere			*speres;
+//	t_cone			*cones;
+//	t_limcone		*lcones;
+//	t_cylinder		*cylinders;
+//	t_limcylinder	*lcylinders;
+//	t_light			*lights;
+//}				t_objs;
 
 typedef struct	s_data
 {
@@ -95,5 +97,50 @@ typedef struct	s_data
 	void		*img;
 	int			*data;
 }				t_data;
+
+typedef struct	s_parse
+{
+	char		*gnl_str;
+	char		gnl_flag;
+	t_list		*curr_obj;
+	t_light		*light;
+	int			fd;
+}				t_parse;
+
+/*
+**		simple error management
+*/
+
+int		safe_call_int(int res, char *message, t_data *data);
+void	*safe_call_ptr(void *res, char *message, t_data *data);
+int		safe_call_int_parse(int res, char *message, t_data *data, t_parse *parse);
+void	*safe_call_ptr_parse(void *res, char *message, t_data *data, t_parse *parse);
+
+/*
+**		parse
+*/
+
+void	parse(char *str, t_data *data);
+int		parse_light(t_data *data, t_parse *parse);
+int		parse_plane(t_data *data, t_parse *parse);
+int		parse_sphere(t_data *data, t_parse *parse);
+int		parse_cone(t_data *data, t_parse *parse);
+int		parse_cylinder(t_data *data, t_parse *parse);
+
+/*
+**		parse tools
+*/
+
+void	check_error(char gnl_read_flag, char brackets, t_data *data);
+int		check_line(char *should_be, char *check);
+char	*parse_float(char *str, float *box);
+char	*skip_to(char *check, char *original);
+void	parse_vec3(char *str, t_vec3 *coordinates, t_data *data, t_parse *parse);
+
+/*
+**		leaks_management
+*/
+
+void	remove_data(t_data *data);
 
 # endif
