@@ -6,6 +6,14 @@
 #include "libnum.h"
 #include "libft.h"
 
+#define WIDTH 1000
+#define HEIGHT 1000
+
+
+#define FOV 1,0472// == rads 60 | 1,5708 == rads 90
+
+//TODO для фикса рыбьего глаза м. просчитывать каждую точку как z = sqrt(x^2 + y^2) (?возможно?)
+
 typedef enum	e_type
 {
 	SPHERE,
@@ -19,6 +27,7 @@ typedef struct  s_plane
 {
 	int8_t		type;
     t_vec3      coords;//произв точка на пл-ти
+	t_vec3		norm;//нормаль к плоскости
     float       dist;//кратчайшее расстояние до плоскости
 }				t_plane;
 
@@ -72,6 +81,13 @@ typedef struct	s_light
 	//smth else coming
 }				t_light;
 
+typedef struct	s_cam
+{
+	t_vec3		pos;
+	t_vec3		dir;//vec D
+	t_vec3		deg;
+}				t_cam;
+
 typedef struct	s_obj
 {
 	int8_t		type;
@@ -88,14 +104,22 @@ typedef struct	s_obj
 //	t_light			*lights;
 //}				t_objs;
 
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			*data;
+	int			bpp;
+	int			sl;
+	int			endn;
+}				t_mlx;
+
 typedef struct	s_data
 {
 	t_light		*light;
 	t_list		*objs;
-	void		*mlx;//mb another struct for mlx
-	void		*win;
-	void		*img;
-	int			*data;
+	t_mlx		mlx;
 }				t_data;
 
 typedef struct	s_parse
