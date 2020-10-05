@@ -6,36 +6,13 @@
 /*   By: jvoor <jvoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 23:33:37 by jvoor             #+#    #+#             */
-/*   Updated: 2020/10/02 17:56:11 by jvoor            ###   ########.fr       */
+/*   Updated: 2020/10/05 20:26:43 by jvoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-// double ft_map_inline(double x, double in_start, double in_end, double out_start, double out_end)
-// {
-//     return (fabs((x - in_start) / (in_end - in_start)) * ((out_end - out_start)) + out_start);
-// }
-
-// double ft_map(double x, double in_start, double in_end, double out_start, double out_end)
-// {
-//     double x_tmp;
-
-//     x_tmp = x - in_start;
-//     x_tmp /= (in_end - in_start);
-//     x_tmp *= (out_end - out_start);
-//     x_tmp += out_start;
-
-//     return (x_tmp);
-// }
-
-
-// void		file_read()
-// {
-	
-// }
-
-void esc_exit(int kw)
+void			esc_exit(int kw)
 {
 	if (kw == 53)
 	{
@@ -43,23 +20,57 @@ void esc_exit(int kw)
 	}
 }
 
-int			main()
+t_mlx				init_mlx()
 {
-	int			bpp;
-	int			sl;
-	int			endn;
+	t_mlx		mlx;
 
-    void *mlx = mlx_init();
-	void *win = mlx_new_window(mlx, 1000, 1000, "RTv1");
-	void *img = mlx_new_image(mlx, 1000, 1000);
-	int *data = (int *)mlx_get_data_addr(img, &bpp, &sl, &endn);
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "RTv1");
+	mlx.img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
+	mlx.data = (int *)mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.sl, &mlx.endn);
 
-	mlx_key_hook(win, esc_exit, NULL);
-	mlx_loop(mlx);
-        
-    // double x = ft_map_inline(-7, 10, 1, 20, -20);
+	return(mlx);
+}
 
-    // printf("%lf\n", x);
+t_cam			init_cam()
+{
+	t_cam		cam;
+	
+	cam.pos = vec3(0, 0, 0);
+	cam.dir = vec3(1, 0, 0);
+	cam.deg = vec3(0, 0, 1);
+
+	return(cam);
+}
+
+t_plane			init_plane()
+{
+	t_plane		plane;
+	
+	plane.coords = vec3(20, 20, 20);
+	plane.norm	= vec3(0, 0, 1);
+}
+
+// void			draw_plane(t_plane plane, int *img)
+// {
+	
+// }
+
+int				main()
+{
+	int i = 0;
+	t_plane		plane = init_plane();
+	t_mlx		mlx = init_mlx();
+	t_cam 		cam = init_cam();
+	
+	while (i++ < 1000000)
+	{
+		mlx.data[i] = 0xFFFF00;
+	}
+	// draw_plane(plane, mlx.img);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+	mlx_key_hook(mlx.win, esc_exit, NULL);
+	mlx_loop(mlx.mlx);
 
     return (0);
 }
