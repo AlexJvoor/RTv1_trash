@@ -20,18 +20,6 @@ void			esc_exit(int kw)
 	}
 }
 
-t_mlx				init_mlx()
-{
-	t_mlx		mlx;
-
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "RTv1");
-	mlx.img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
-	mlx.data = (int *)mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.sl, &mlx.endn);
-
-	return(mlx);
-}
-
 t_cam			init_cam()
 {
 	t_cam		cam;
@@ -60,17 +48,16 @@ int				main()
 {
 	int i = 0;
 	t_plane		plane = init_plane();
-	t_mlx		mlx = init_mlx();
+//	t_mlx		mlx = init_mlx();
 	t_cam 		cam = init_cam();
-	
-	while (i++ < 1000000)
-	{
-		mlx.data[i] = 0xFFFF00;
-	}
-	// draw_plane(plane, mlx.img);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
-	mlx_key_hook(mlx.win, esc_exit, NULL);
-	mlx_loop(mlx.mlx);
+	t_data		data;
 
+	init_data(&data);
+	parse("maps/1", &data);
+	// draw_plane(plane, mlx.img);
+	update_screen(&data);
+	mlx_put_image_to_window(data.mlx.mlx, data.mlx.win, data.mlx.img, 0, 0);
+	mlx_key_hook(data.mlx.win, esc_exit, NULL);
+	mlx_loop(data.mlx.mlx);
     return (0);
 }
